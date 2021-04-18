@@ -1,0 +1,126 @@
+{
+	"name": "vs-crypto",
+	"displayName": "vs-crypto",
+	"description": "",
+	"author": {
+		"name": "Ricky Yung"
+	},
+	"version": "0.0.1",
+	"icon": "media/icon.png",
+	"keywords": [
+		"crypto",
+		"funny"
+	],
+	"engines": {
+		"vscode": "^1.55.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onView:vscrypto-view"
+	],
+	"main": "./src/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "vscrypto.cmd.showChart",
+				"title": "Detail"
+			},
+			{
+				"command": "vscrypto.cmd.search",
+				"title": "Search"
+			},
+			{
+				"command": "vscrypto.cmd.clear",
+				"title": "Clear"
+			},
+			{
+				"command": "vscrypto.cmd.updateTreeView",
+				"title": "Update Tree View"
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "vscrypto",
+					"title": "VS Crypto",
+					"icon": "media/lihkg.svg"
+				}
+			]
+		},
+		"views": {
+			"vscrypto": [
+				{
+					"id": "vscrypto-view",
+					"name": "Crypto"
+				}
+			]
+		},
+		"configuration": [
+			{
+				"title": "VS Crypto",
+				"properties": {
+					"vscrypto.exchange": {
+						"type": "string",
+						"default": "BINANCE",
+						"enum": [
+							"BITFINEX",
+							"ZB",
+							"HUOBI",
+							"KUCOIN",
+							"KRAKEN",
+							"POLONIEX",
+							"BINANCE",
+							"BITTREX",
+							"GEMINI",
+							"OKEX",
+							"COINBASE",
+							"BITMEX",
+							"HITBTC",
+							"FXPIG"
+						]
+					},
+					"vscrypto.view.backgroundColor": {
+						"type":"string",
+						"default": "#ffffff"
+					}
+				}
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "vscrypto.cmd.search",
+					"group": "navigation@1",
+					"when": "view == vscrypto-view"
+				},
+				{
+					"command": "vscrypto.cmd.clear",
+					"group": "navigation@2",
+					"when": "view == vscrypto-view && vscrypto.searchText != ''"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.55.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.4",
+		"@types/node": "^12.11.7",
+		"eslint": "^7.19.0",
+		"glob": "^7.1.6",
+		"mocha": "^8.2.1",
+		"typescript": "^4.1.3",
+		"vscode-test": "^1.5.0"
+	},
+	"dependencies": {
+		"finnhub": "^1.2.1",
+		"highcharts": "^9.0.1"
+	}
+}
